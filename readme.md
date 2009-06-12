@@ -25,7 +25,7 @@ It will generate a bin `nem` inside your current folder.
 
 run `./nem`
 
-          clean: hello-world ls
+          clean: hello-world
     hello-world: ls
              ls:
     
