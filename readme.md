@@ -44,15 +44,9 @@ Use a separator below language extensions, e.g.
     -- Nem
 
     nemesis = do
-      task "clean <= hello-world" (print "cleaning")
+      task "i" (sh "ghci -isrc src/System/Nemesis.hs")
 
-      task "hello-world <= ls" $ do
-        sh "echo HELLO"
-
-      task "ls" $ do
-        sh "ls"
-
-currently the seperater `-- Nem` is hard coded
+currently the separator `-- Nem` is hard coded
 
 ### Build it yourself
 
@@ -63,13 +57,7 @@ Example:
     import System.Nemesis
 
     nemesis = do
-      task "clean <= hello-world" (print "cleaning")
-
-      task "hello-world <= ls" $ do
-        sh "echo HELLO"
-
-      task "ls" $ do
-        sh "ls"
+      task "i" (sh "ghci -isrc src/System/Nemesis.hs")
         
     main = nemesis
 
