@@ -4,13 +4,20 @@ Nemesis: a rake like task management tool for haskell
 Tutorial
 --------
 
+### Install
+
+    cabal update; cabal install nemesis
+
 ### DSL
 
 in `nem.hs`
 
     nemesis = do
     
+      -- desc is optional, it gives some description to the following task
       desc "learn Haskell"
+      
+      -- syntax: task [keyworkd: dependencies] io-action
       task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
 
       desc "learn Functional Programming"
