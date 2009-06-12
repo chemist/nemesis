@@ -32,7 +32,16 @@ instance Default Task where
   def = Task def (return ()) def
 
 instance Show Task where
-  show x = x.name.ljust 20 ' ' ++ " <= " ++ x.deps.show
+  show x 
+    | x.deps.null = title
+    | otherwise = 
+      [
+        title
+      , x.deps.join " "
+      , ""
+      ] .concat
+    where
+      title = x.name.ljust 20 ' ' ++ ": "
 
 instance Eq Task where
   a == b = a.name == b.name
@@ -67,7 +76,7 @@ run unit = do
 
 task :: String -> IO () -> Unit
 task s action = 
-  let x:xs = s.split "\\s*<=\\s*"
+  let x:xs = s.split "\\s*:\\s*"
   in
   task' x (xs.join'.words)
   where

@@ -9,9 +9,9 @@ Tutorial
 Put this in `nem.hs`
 
     nemesis = do
-      task "clean <= hello-world" (print "cleaning")
+      task "clean: hello-world" (print "cleaning")
 
-      task "hello-world <= ls" $ do
+      task "hello-world: ls" $ do
         sh "echo HELLO"
 
       task "ls" $ do
@@ -25,9 +25,10 @@ It will generate a bin `nem` inside your current folder.
 
 run `./nem`
 
-          clean <= ["hello-world"]
-    hello-world <= ["ls"]
-             ls <= []
+          clean: hello-world ls
+    hello-world: ls
+             ls:
+    
 
 run `./nem ls`
 
