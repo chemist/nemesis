@@ -57,7 +57,7 @@ sh s = do
   status <- system s
   case status of 
     ExitSuccess -> return ()
-    ExitFailure code -> error $ s ++ " failed with status code" ++ show code
+    ExitFailure code -> error $ s ++ " failed with status code: " ++ show code
 
 run :: Unit -> IO ()
 run unit = do
