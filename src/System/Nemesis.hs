@@ -1,45 +1,42 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
-module System.Nemesis (run, sh, task) where
+module System.Nemesis (run, sh, task, desc) where
 
-import MPS hiding (empty)
+-- import MPS hiding (empty)
 import Prelude hiding ((.), (>), (^), lookup)
 import Control.Monad.State hiding (State, join)
 import Data.Default
 import Data.Map (Map, insert, empty, lookup, elems)
-import System.Cmd (system)
 import System
 import GHC.IOBase hiding (liftIO)
+import Nemesis.Util
 
 data Task = Task
   {
     name :: String
   , action :: IO ()
   , deps :: [String]
+  , description :: Maybe String
   }
 
 data Nemesis = Nemesis
   {
     tasks :: Map String Task
   , target :: String
+  , current_desc :: Maybe String
   }
   deriving (Show)
 
 instance Default Nemesis where
-  def = Nemesis empty def
+  def = Nemesis empty def def
 
 instance Default Task where
-  def = Task def (return ()) def
+  def = Task def (return ()) def def
 
 instance Show Task where
-  show x 
-    | x.deps.null = title
-    | otherwise = 
-      [
-        title
-      , x.deps.join " "
-      , ""
-      ] .concat
+  show x = case x.description of
+    Nothing -> title
+    Just s -> title ++ s
     where
       title = x.name.ljust 20 ' ' ++ ": "
 
@@ -74,19 +71,31 @@ run unit = do
       br
     br = putStrLn ""
 
+desc :: String -> Unit
+desc s = do
+  n <- get
+  put n {current_desc = Just s}
+
 task :: String -> IO () -> Unit
 task s action = 
-  let x:xs = s.split "\\s*:\\s*"
-  in
-  task' x (xs.join'.words)
+  if s.has ':'
+    then
+      let h = s.takeWhile (/= ':')
+          t = s.dropWhile (/= ':') .tail
+      in
+      task' h (t.words)
+    else
+      task' s []
   where
-    task' name deps = insert_task Task {name, deps, action}
+    task' name deps = insert_task def {name, deps, action}
 
 insert_task :: Task -> Unit
 insert_task t = do
   n <- get
-  let tasks' = n.tasks.insert (t.name) t
-  put n {tasks = tasks'}
+  let description = n.current_desc
+      tasks' = n.tasks.insert (t.name) t {description}
+     
+  put n {tasks = tasks', current_desc = Nothing}
 
 run_nemesis :: Nemesis -> IO ()
 run_nemesis n = run' (n.target)
@@ -99,8 +108,9 @@ run_nemesis n = run' (n.target)
         bye = error $ s ++  " does not exist!"
 
     revenge :: Task -> IO ()
-    revenge t = t.deps.to_list.mapM_ run' >> revenge_and_say
+    revenge t = t.deps.mapM_ run' >> revenge_and_say
       where
         revenge_and_say = do
           -- putStrLn $ "running: " ++ t.name
           t.action
+

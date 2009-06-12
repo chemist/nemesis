@@ -1,23 +1,12 @@
 {-# LANGUAGE QuasiQuotes #-}
 
-import MPS
 import Prelude hiding ((.), (>), (^))
 import System.Cmd
-
+import Nemesis.Util
 
 start, end :: String
-start = [$here|
-module Main where
-import System.Nemesis
-
-
-|]
-
-end = [$here|
-
-
-main = run nemesis
-|]
+start = "\n\n\n\nmodule Main where\n" ++ "import System.Nemesis"
+end = "\n\n\nmain = run nemesis\n"
 
 main :: IO ()
 main = do
@@ -34,11 +23,12 @@ main = do
   return ()
   
   where
-    get_name [] = error "nem.hs does not exists"
+    get_name [] = error "Nemesis does not exists"
     get_name xs = xs.first
-    possible_source = ["Nem.hs", "nem.hs", "nemesis.hs", "Nemesis.hs"]
+    possible_source = ["Nemesis", "nemesis", "nemesis.hs", "Nemesis.hs"]
     sep = "-- nem"
     output = writeFile tmp_name
     tmp_name = "nemesis-tmp.hs"
     bin = "nem"
  
+-- helper from mps

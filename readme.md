@@ -9,11 +9,14 @@ Tutorial
 in `nem.hs`
 
     nemesis = do
+      desc "learn Haskell"
       task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
 
+      desc "learn Functional Programming"
       task "learn-fp: learn-lisp" $ do
         sh "echo 'into FP'"
 
+      desc "learn LISP"
       task "learn-lisp" $ do
         sh "echo 'LISP is cool!'"
 
@@ -25,9 +28,10 @@ It will generate a bin `nem` inside your current folder.
 
 run `./nem`
 
-         learn-fp: learn-lisp
-    learn-haskell: learn-fp
-       learn-lisp: 
+         learn-fp: learn Functional Programming
+    learn-haskell: learn Haskell
+       learn-lisp: learn LISP
+    
 
 run `./nem learn-haskell`
 
