@@ -36,7 +36,7 @@ run `./nem ls`
 Advance usage
 -------------
 
-### Use LANGUAGEW
+### Use LANGUAGE
 
 Use a separator below language extensions, e.g.
 
