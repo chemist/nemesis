@@ -93,11 +93,12 @@ Example:
 
     module Main where
     
-    import System.Nemesis
+    import System.Nemesis (run)
+    import System.Nemesis.DSL (desc, task, sh)
 
     nemesis = do
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
         
-    main = nemesis
+    main = run nemesis
 
 
