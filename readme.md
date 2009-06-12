@@ -9,13 +9,13 @@ Tutorial
 in `nem.hs`
 
     nemesis = do
-      task "clean: hello-world" (print "cleaning")
+      task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
 
-      task "hello-world: ls" $ do
-        sh "echo HELLO"
+      task "learn-fp: learn-lisp" $ do
+        sh "echo 'into FP'"
 
-      task "ls" $ do
-        sh "ls"
+      task "learn-lisp" $ do
+        sh "echo 'LISP is cool!'"
 
 run `nemesis`
 
@@ -25,13 +25,16 @@ It will generate a bin `nem` inside your current folder.
 
 run `./nem`
 
-          clean: hello-world
-    hello-world: ls
-             ls:
+         learn-fp: learn-lisp
+    learn-haskell: learn-fp
+       learn-lisp: 
+
+run `./nem learn-haskell`
+
+    LISP is cool!
+    into FP
+    Haskell is awesome!
     
-
-run `./nem ls`
-
 
 Advance usage
 -------------
