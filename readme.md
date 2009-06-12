@@ -102,6 +102,6 @@ Example:
 Hint
 ----
 
-Save typing by aliasing `./nes` to `n`, i.e. inside `.shell`
+Save typing by aliasing `./nes` to `n`, i.e. inside `.your_shellrc`
 
     alias n="./nes"
