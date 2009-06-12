@@ -6,7 +6,7 @@ start, end, sep_block :: String
 sep_block = "\n\n\n\n"
 start = sep_block ++ start_nemesis ++ start_nemesis_dsl
   where 
-    start_nemesis     = "import System.Nemesis\n"
+    start_nemesis     = "import System.Nemesis (run)\n"
     start_nemesis_dsl = "import System.Nemesis.DSL (sh, task, desc)\n"
 end = sep_block ++ "main = run nemesis\n"
 

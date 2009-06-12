@@ -3,9 +3,17 @@ Nemesis: a rake like task management tool for haskell
 
 Demo
 ----
-
+  
+    import System.Nemesis.DSL (clean)
+    
     nemesis = do
 
+      clean
+        [ "**/*.hi"
+        , "**/*.o"
+        , "manifest"
+        ]
+        
       task "dist" $ do
         sh "cabal clean"
         sh "cabal configure"
