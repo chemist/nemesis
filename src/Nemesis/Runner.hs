@@ -18,7 +18,7 @@ main = do
     then output $ start ++ h ++ end
     else output $ h ++ start ++ t ++ end
   
-  system $ "ghc --make " ++ tmp_name ++ " -o " ++ bin
+  system $ "ghc --make -O1 " ++ tmp_name ++ " -o " ++ bin
   system $ "rm " ++ tmp_name
   return ()
   
