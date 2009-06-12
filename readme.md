@@ -10,7 +10,7 @@ Tutorial
 
 ### DSL
 
-in `nem.hs`
+in `Nemesis.hs`
 
     nemesis = do
     
