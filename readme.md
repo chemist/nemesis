@@ -6,7 +6,7 @@ Tutorial
 
 ### DSL
 
-Put this in `nem.hs`
+in `nem.hs`
 
     nemesis = do
       task "clean: hello-world" (print "cleaning")
@@ -33,10 +33,10 @@ run `./nem`
 run `./nem ls`
 
 
-Advance
--------
+Advance usage
+-------------
 
-### Language progma
+### Use LANGUAGEW
 
 Use a separator below language extensions, e.g.
 
