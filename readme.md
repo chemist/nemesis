@@ -17,7 +17,7 @@ in `nem.hs`
       -- desc is optional, it gives some description to the following task
       desc "learn Haskell"
       
-      -- syntax: task [keyworkd: dependencies] io-action
+      -- syntax: task [keyword: dependencies] io-action
       task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
 
       desc "learn Functional Programming"
