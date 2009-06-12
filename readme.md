@@ -9,6 +9,7 @@ Tutorial
 in `nem.hs`
 
     nemesis = do
+    
       desc "learn Haskell"
       task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
 
