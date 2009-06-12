@@ -1,6 +1,21 @@
 Nemesis: a rake like task management tool for haskell
 =====================================================
 
+Demo
+----
+
+    nemesis = do
+
+      task "dist" $ do
+        sh "cabal clean"
+        sh "cabal configure"
+        sh "cabal sdist"
+
+      task "i" (sh "ghci -isrc src/System/Nemesis.hs")
+
+      task "manifest" $ do
+        sh "find . | grep 'hs$' > manifest"
+
 Tutorial
 --------
 
@@ -60,16 +75,7 @@ Use a separator below language extensions, e.g.
     -- Nem
 
     nemesis = do
-
-      task "dist" $ do
-        sh "cabal clean"
-        sh "cabal configure"
-        sh "cabal sdist"
-
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
-
-      task "manifest" $ do
-        sh "find . | grep 'hs$' > manifest"
 
 currently the separator `-- Nem` is hard coded
 
