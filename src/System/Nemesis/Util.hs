@@ -1,16 +1,15 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
-module Nemesis.Util where
+module System.Nemesis.Util where
 
-import Prelude hiding ((>), (.), (^))
-import qualified Data.List as L
-import Data.Function (on)
 import Control.Arrow ((>>>))
-import Data.Char (toLower)
-import Data.List (isPrefixOf, (\\))
-import System.Directory
 import Control.Category (Category)
-
+import Data.Char (toLower)
+import Data.Function (on)
+import Data.List (isPrefixOf, (\\))
+import Prelude hiding ((>), (.), (^))
+import System.Directory
+import qualified Data.List as L
 
 -- utility functions from mps
 

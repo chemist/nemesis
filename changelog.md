@@ -1,9 +1,21 @@
+2009.6.13.1
+-----------
+
+### Feature
+
+* add `clean` keyword
+
+### Fix
+
+* allow space before ":" in task description
+* remove `.o .hi` for temp file
+
 2009.6.13
 ---------
 
 ### Feature
 
-* add `desc` dsl
+* add `desc` keyword
 
 ### Fix
 

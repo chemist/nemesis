@@ -1,12 +1,20 @@
 -- template nemesis file
 
+import System.Nemesis.DSL (clean)
+
 nemesis = do
   
+  clean
+    [ "**/*.hi"
+    , "**/*.o"
+    , "manifest"
+    ]
+    
   desc "learn Haskell"
   task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
   
   desc "learn Functional Programming"
-  task "learn-fp: learn-lisp" $ do
+  task "learn-fp : learn-lisp" $ do
     sh "echo 'into FP'"
 
   desc "learn LISP"
@@ -22,3 +30,4 @@ nemesis = do
 
   task "manifest" $ do
     sh "find . | grep 'hs$' > manifest"
+    

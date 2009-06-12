@@ -1,5 +1,5 @@
 Name:                 nemesis
-Version:              2009.6.13
+Version:              2009.6.13.1
 Build-type:           Simple
 Synopsis:             a rake like task management tool
 Description:
@@ -22,12 +22,13 @@ library
   hs-source-dirs: src/
   exposed-modules:  
                       System.Nemesis
+                      System.Nemesis.DSL
   other-modules:
-                      Nemesis.Util
+                      System.Nemesis.Util
 
 Executable            nemesis
   ghc-options:        -Wall
   build-depends:      base >= 4 && < 5, haskell98, mtl, process, containers, data-default, directory
   hs-source-dirs:     src/
-  main-is:            Nemesis/Runner.hs
-  other-modules:      Nemesis.Util
+  main-is:            System/Nemesis/Runner.hs
+  other-modules:      System.Nemesis.Util

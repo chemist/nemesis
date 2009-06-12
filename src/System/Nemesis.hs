@@ -1,15 +1,13 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
-module System.Nemesis (run, sh, task, desc) where
+module System.Nemesis where
 
--- import MPS hiding (empty)
 import Prelude hiding ((.), (>), (^), lookup)
 import Control.Monad.State hiding (State, join)
 import Data.Default
 import Data.Map (Map, insert, empty, lookup, elems)
 import System
-import GHC.IOBase hiding (liftIO)
-import Nemesis.Util
+import System.Nemesis.Util
 
 data Task = Task
   {
@@ -48,13 +46,6 @@ instance Ord Task where
 
 type Unit = StateT Nemesis IO ()
 
--- sh :: String -> IO GHC.IOBase.ExitCode
-sh :: String -> IO ()
-sh s = do
-  status <- system s
-  case status of 
-    ExitSuccess -> return ()
-    ExitFailure code -> error $ s ++ " failed with status code: " ++ show code
 
 run :: Unit -> IO ()
 run unit = do
@@ -70,24 +61,6 @@ run unit = do
       n.tasks.elems.mapM_ print
       br
     br = putStrLn ""
-
-desc :: String -> Unit
-desc s = do
-  n <- get
-  put n {current_desc = Just s}
-
-task :: String -> IO () -> Unit
-task s action = 
-  if s.has ':'
-    then
-      let h = s.takeWhile (/= ':')
-          t = s.dropWhile (/= ':') .tail
-      in
-      task' h (t.words)
-    else
-      task' s []
-  where
-    task' name deps = insert_task def {name, deps, action}
 
 insert_task :: Task -> Unit
 insert_task t = do
@@ -113,4 +86,3 @@ run_nemesis n = run' (n.target)
         revenge_and_say = do
           -- putStrLn $ "running: " ++ t.name
           t.action
-
