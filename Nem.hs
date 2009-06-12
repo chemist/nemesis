@@ -6,3 +6,5 @@ nemesis = do
 
   task "ls" $ do
     sh "ls"
+
+  task "i" (sh "ghci -isrc src/System/Nemesis.hs")
