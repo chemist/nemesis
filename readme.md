@@ -10,7 +10,7 @@ Tutorial
 
 ### DSL
 
-in `Nemesis.hs`
+Put the following code into a file named `Nemesis`
 
     nemesis = do
     
