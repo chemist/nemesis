@@ -1,10 +1,10 @@
 Name:                 nemesis
 Version:              2009.5.2
 Build-type:           Simple
-Synopsis:             rake like task management dsl
+Synopsis:             rake like task management tool
 Description:
         
-    rake like task management dsl
+    rake like task management tool
 
 License:              BSD3
 License-file:         LICENSE
