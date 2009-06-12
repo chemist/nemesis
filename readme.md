@@ -99,4 +99,9 @@ Example:
         
     main = run nemesis
 
+Hint
+----
 
+Save typing by aliasing `./nes` to `n`, i.e. inside `.shell`
+
+    alias n="./nes"
