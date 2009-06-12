@@ -26,7 +26,7 @@ main = do
   rm tmp_hi
   
   where
-    get_name []     = error "Nemesis does not exists"
+    get_name []     = error "Nemesis does not exist!"
     get_name xs     = xs.first
     possible_source = ["Nemesis", "nemesis", "nemesis.hs", "Nemesis.hs"]
     sep             = "-- nem"
