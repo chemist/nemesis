@@ -1,10 +1,13 @@
-nemesis = do
-  task "clean: hello-world ls" (print "cleaning")
-  
-  task "hello-world: ls" $ do
-    sh "echo HELLO"
+-- template nemesis file
 
-  task "ls" $ do
-    sh "ls"
+nemesis = do
+  
+  task "dist" $ do
+    sh "cabal clean"
+    sh "cabal configure"
+    sh "cabal sdist"
 
   task "i" (sh "ghci -isrc src/System/Nemesis.hs")
+  
+  task "manifest" $ do
+    sh "find . | grep 'hs$' > manifest"
