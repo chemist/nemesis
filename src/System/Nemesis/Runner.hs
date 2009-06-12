@@ -7,7 +7,7 @@ sep_block = "\n\n\n\n"
 start = sep_block ++ start_nemesis ++ start_nemesis_dsl
   where 
     start_nemesis     = "import System.Nemesis (run)\n"
-    start_nemesis_dsl = "import System.Nemesis.DSL (sh, task, desc)\n"
+    start_nemesis_dsl = "import System.Nemesis.DSL\n"
 end = sep_block ++ "main = run nemesis\n"
 
 main :: IO ()
@@ -21,10 +21,9 @@ main = do
     else output $ h ++ start ++ t ++ end
   
   system $ "ghc --make -O1 " ++ tmp_name ++ " -o " ++ bin
-  system $ "rm " ++ tmp_name
-  system $ "rm " ++ tmp_o
-  system $ "rm " ++ tmp_hi
-  return ()
+  rm tmp_name
+  rm tmp_o
+  rm tmp_hi
   
   where
     get_name []     = error "Nemesis does not exists"

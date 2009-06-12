@@ -1,7 +1,5 @@
 -- template nemesis file
 
-import System.Nemesis.DSL (clean)
-
 nemesis = do
   
   clean

@@ -62,3 +62,9 @@ starts_with = isPrefixOf
 
 ls :: String -> IO [String]
 ls s = getDirectoryContents s ^ (\\ [".", ".."])
+
+rm :: String -> IO ()
+rm = removeFile
+
+rm_rf :: String -> IO ()
+rm_rf = removeDirectoryRecursive

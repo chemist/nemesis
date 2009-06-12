@@ -8,6 +8,9 @@ import Prelude hiding ((.), (>), (^), lookup)
 import System
 import System.Nemesis
 import System.Nemesis.Util
+import System.FilePath.Glob
+import Data.List (nub, sort)
+import System.Directory
 
 desc :: String -> Unit
 desc s = do
@@ -38,4 +41,12 @@ sh s = do
 clean :: [String] -> Unit
 clean xs = do
   desc "Remove any temporary products. map (rm -rf)"
-  task "clean" $ mapM_ (\x -> sh ("rm  -rf " ++ x)) xs
+  task "clean" $ do
+    paths <- globDir (xs.map compile) "." ^ fst ^ join' ^ nub ^ sort ^ reverse
+    mapM_ rm_any paths
+    where
+      rm_any s = do
+        file_exist <- doesFileExist s
+        when file_exist $ rm s
+        dir_exist <- doesDirectoryExist s
+        when dir_exist $ rm_rf s

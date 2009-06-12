@@ -1,3 +1,10 @@
+2009.6.13.2
+-----------
+
+### Fix
+
+* use glob instead of zsh specific feature
+
 2009.6.13.1
 -----------
 

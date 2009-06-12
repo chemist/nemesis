@@ -4,8 +4,6 @@ Nemesis: a rake like task management tool for haskell
 Demo
 ----
   
-    import System.Nemesis.DSL (clean)
-    
     nemesis = do
 
       clean
@@ -94,7 +92,7 @@ Example:
     module Main where
     
     import System.Nemesis (run)
-    import System.Nemesis.DSL (desc, task, sh)
+    import System.Nemesis.DSL
 
     nemesis = do
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
