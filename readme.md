@@ -51,18 +51,18 @@ Put the following code into a file named `Nemesis`
 
 run `nemesis`
 
-It will generate a bin `nem` inside your current folder.
+It will generate a bin `.nemesis` inside your current folder.
 
 ### Run
 
-run `./nem`
+run `./.nemesis`
 
          learn-fp: learn Functional Programming
     learn-haskell: learn Haskell
        learn-lisp: learn LISP
     
 
-run `./nem learn-haskell`
+run `./.nemesis learn-haskell`
 
     LISP is cool!
     into FP
@@ -102,6 +102,6 @@ The logic is that whenever `main` is defined in `Nemesis.hs`, `nemesis` will act
 Hint
 ----
 
-Save typing by aliasing `./nes` to `n`, i.e. inside `.your_shellrc`
+Save typing by aliasing `./.nemesis` to `n`, i.e. inside `.your_shellrc`
 
-    alias n="./nes"
+    alias n="./.nemesis"

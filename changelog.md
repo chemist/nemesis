@@ -1,3 +1,10 @@
+2009.6.14.2
+-----------
+
+### Feature
+
+* nemesis bin rename to `.nemesis`, this keeps working directory clean
+
 2009.6.14.1
 -----------
 
