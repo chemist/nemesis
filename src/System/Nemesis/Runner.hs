@@ -49,7 +49,7 @@ main = do
     tmp_name        = "nemesis-tmp.hs"
     tmp_o           = "nemesis-tmp.o"
     tmp_hi          = "nemesis-tmp.hi"
-    bin             = "nem"
+    bin             = ".nemesis"
     src_base_name s = if s.ends_with ".hs" 
                         then s.reverse.drop 3.reverse
                         else s
