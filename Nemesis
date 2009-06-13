@@ -1,5 +1,3 @@
--- template nemesis file
-
 nemesis = do
   
   clean
@@ -28,4 +26,3 @@ nemesis = do
 
   task "manifest" $ do
     sh "find . | grep 'hs$' > manifest"
-    

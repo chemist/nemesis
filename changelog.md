@@ -1,3 +1,11 @@
+2009.6.14
+---------
+
+### Feature
+
+* Support compilable Nemesis, i.e. with import and main
+* sort task list when output
+
 2009.6.13.2
 -----------
 

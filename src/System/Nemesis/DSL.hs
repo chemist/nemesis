@@ -4,13 +4,13 @@ module System.Nemesis.DSL where
 
 import Control.Monad.State hiding (State, join)
 import Data.Default
+import Data.List (nub, sort)
 import Prelude hiding ((.), (>), (^), lookup)
 import System
+import System.Directory
+import System.FilePath.Glob
 import System.Nemesis
 import System.Nemesis.Util
-import System.FilePath.Glob
-import Data.List (nub, sort)
-import System.Directory
 
 desc :: String -> Unit
 desc s = do
@@ -40,7 +40,7 @@ sh s = do
 
 clean :: [String] -> Unit
 clean xs = do
-  desc "Remove any temporary products. map (rm -rf)"
+  desc "Remove any temporary products."
   task "clean" $ do
     paths <- globDir (xs.map compile) "." ^ fst ^ join' ^ nub ^ sort ^ reverse
     mapM_ rm_any paths

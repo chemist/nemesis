@@ -2,10 +2,11 @@
 
 module System.Nemesis where
 
-import Prelude hiding ((.), (>), (^), lookup)
 import Control.Monad.State hiding (State, join)
 import Data.Default
+import Data.List (sort)
 import Data.Map (Map, insert, empty, lookup, elems)
+import Prelude hiding ((.), (>), (^), lookup)
 import System
 import System.Nemesis.Util
 
@@ -58,7 +59,7 @@ run unit = do
     help = execStateT unit def >>= list_task
     list_task n = do
       br
-      n.tasks.elems.mapM_ print
+      n.tasks.elems.sort.mapM_ print
       br
     br = putStrLn ""
 

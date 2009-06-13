@@ -6,14 +6,13 @@ import Control.Arrow ((>>>))
 import Control.Category (Category)
 import Data.Char (toLower)
 import Data.Function (on)
-import Data.List (isPrefixOf, (\\))
+import Data.List (isPrefixOf, isSuffixOf, (\\))
 import Prelude hiding ((>), (.), (^))
 import System.Directory
 import qualified Data.List as L
 
 -- utility functions from mps
 
--- base DSL
 (.) :: a -> (a -> b) -> b
 a . f = f a
 infixl 9 .
@@ -59,6 +58,9 @@ lower = map toLower
 
 starts_with :: String -> String -> Bool
 starts_with = isPrefixOf
+
+ends_with :: String -> String -> Bool
+ends_with = isSuffixOf
 
 ls :: String -> IO [String]
 ls s = getDirectoryContents s ^ (\\ [".", ".."])
