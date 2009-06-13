@@ -20,19 +20,19 @@ main = do
   src <- readFile src_name
   
   let patch_end   = patch_src main_src src end
-      patch_start = patch_src import_src src start
+      patch_start = patch_src main_src src start
       h = src.lines.takeWhile (lower > starts_with sep > not) .unlines
       t = src.lines.dropWhile (lower > starts_with sep > not) .unlines
-  if t.null
-    then output $ patch_start ++ h ++ patch_end
-    else output $ h ++ patch_start ++ "\n" ++ t ++ patch_end
-  
-  if ((null $ patch_end ++ patch_start) && src_name.ends_with ".hs")
+
+  if ((patch_end ++ patch_start).null && src_name.ends_with ".hs")
     then do
       system $ "ghc --make -O1 " ++ src_name ++ " -o " ++ bin
       rm src_o
       rm src_hi
     else do
+      if t.null
+        then output_tmp $ patch_start ++ h ++ patch_end
+        else output_tmp $ h ++ patch_start ++ "\n" ++ t ++ patch_end
       system $ "ghc --make -O1 " ++ tmp_name ++ " -o " ++ bin
       rm tmp_name
       rm tmp_o
@@ -41,12 +41,11 @@ main = do
   where
 
     main_src        = "main ="
-    import_src      = "import System.Nemesis"
     get_name []     = error "Nemesis does not exist!"
     get_name xs     = xs.first
     possible_source = ["Nemesis", "nemesis", "nemesis.hs", "Nemesis.hs"]
     sep             = "-- nem"
-    output          = writeFile tmp_name
+    output_tmp      = writeFile tmp_name
     tmp_name        = "nemesis-tmp.hs"
     tmp_o           = "nemesis-tmp.o"
     tmp_hi          = "nemesis-tmp.hi"

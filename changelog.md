@@ -1,3 +1,11 @@
+2009.6.14.1
+-----------
+
+### Fix
+
+* only check "main ="
+* do not generate tmp file when name is `Nemesis.hs`
+
 2009.6.14
 ---------
 

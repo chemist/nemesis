@@ -4,25 +4,19 @@ nemesis = do
     [ "**/*.hi"
     , "**/*.o"
     , "manifest"
+    , "main"
+    , "nemesis-tmp.*"
     ]
-    
-  desc "learn Haskell"
-  task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
   
-  desc "learn Functional Programming"
-  task "learn-fp : learn-lisp" $ do
-    sh "echo 'into FP'"
-
-  desc "learn LISP"
-  task "learn-lisp" $ do
-    sh "echo 'LISP is cool!'"
-    
+  desc "prepare cabal dist"
   task "dist" $ do
     sh "cabal clean"
     sh "cabal configure"
     sh "cabal sdist"
 
+  desc "start console"
   task "i" (sh "ghci -isrc src/System/Nemesis.hs")
 
+  desc "put all .hs files in manifest"
   task "manifest" $ do
     sh "find . | grep 'hs$' > manifest"
