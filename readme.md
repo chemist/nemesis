@@ -89,8 +89,6 @@ currently the separator `-- Nem` is hard coded
 
 Example:
 
-    module Main where
-    
     import System.Nemesis (run)
     import System.Nemesis.DSL
 
