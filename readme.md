@@ -87,7 +87,7 @@ currently the separator `-- Nem` is hard coded
 
 ### Build it yourself
 
-Example:
+If you don't want `nemesis` to compile `Nemesis` through intermediate `nemesis-tmp.hs` file, rename your `Nemesis` to `Nemesis.hs`, then start with this template.
 
     import System.Nemesis (run)
     import System.Nemesis.DSL
@@ -96,6 +96,8 @@ Example:
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
         
     main = run nemesis
+
+The logic is that whenever `main` is defined in `Nemesis.hs`, `nemesis` will act as `ghc --make` wrapper, so you can get nice error messages.
 
 Hint
 ----
