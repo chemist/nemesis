@@ -41,7 +41,7 @@ Put the following code into a file named `Nemesis`
       -- syntax: task "keyword: dependencies" io-action
       task "attack: pet-attack auto-attack" (putStrLn "attack macro done!")
 
-      desc "Pet attack first"
+      desc "Pet attack"
       task "pet-attack: mark" $ do
         sh "echo 'pet attack'"
 
