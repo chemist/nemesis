@@ -36,18 +36,22 @@ Put the following code into a file named `Nemesis`
     nemesis = do
     
       -- desc is optional, it gives some description to the following task
-      desc "learn Haskell"
-      
+      desc "Hunter attack macro"
+
       -- syntax: task "keyword: dependencies" io-action
-      task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
+      task "attack: pet-attack auto-attack" (putStrLn "attack macro done!")
 
-      desc "learn Functional Programming"
-      task "learn-fp: learn-lisp" $ do
-        sh "echo 'into FP'"
+      desc "Pet attack first"
+      task "pet-attack: mark" $ do
+        sh "echo 'pet attack'"
 
-      desc "learn LISP"
-      task "learn-lisp" $ do
-        sh "echo 'LISP is cool!'"
+      desc "Hunter's mark"
+      task "mark" $ do
+        sh "echo \"casting hunter's mark\""
+
+      desc "Auto attack"
+      task "auto-attack" $ do
+        sh "echo 'auto shoot'"
 
 run `nemesis`
 
@@ -57,17 +61,18 @@ It will generate a bin `.nemesis` inside your current folder.
 
 run `./.nemesis`
 
-    learn-fp                          : learn Functional Programming
-    learn-haskell                     : learn Haskell
-    learn-lisp                        : learn LISP
-    
+    attack                            : Hunter attack macro
+    auto-attack                       : Auto attack
+    mark                              : Hunter's mark
+    pet-attack                        : Pet attack first
 
 run `./.nemesis learn-haskell`
 
-    LISP is cool!
-    into FP
-    Haskell is awesome!
-    
+    casting hunter's mark
+    pet attack
+    auto shoot
+    attack macro done!
+
 
 ### Namespace
 
