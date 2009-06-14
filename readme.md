@@ -64,7 +64,7 @@ run `./.nemesis`
     attack                            : Hunter attack macro
     auto-attack                       : Auto attack
     mark                              : Hunter's mark
-    pet-attack                        : Pet attack first
+    pet-attack                        : Pet attack
 
 run `./.nemesis learn-haskell`
 
