@@ -32,11 +32,15 @@ join    = L.intercalate
 join' :: [[a]] -> [a]
 join'   = concat
 
-ljust :: Int -> a -> [a] -> [a]
+ljust, rjust :: Int -> a -> [a] -> [a]
 ljust n x xs 
   | n < xs.length = xs
   | otherwise     = ( n.times x ++ xs ).reverse.take n.reverse
 
+rjust n x xs
+  | n < xs.length = xs
+  | otherwise     = ( xs ++ n.times x ).take n
+    
 compare_by :: (Ord b) => (a -> b) -> a -> a -> Ordering
 compare_by = on compare
 

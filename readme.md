@@ -69,6 +69,32 @@ run `./.nemesis learn-haskell`
     Haskell is awesome!
     
 
+### Namespace
+
+Suppose you have the following tasks
+
+    namespace "eat" $ do
+
+      task "bread: salad" $ putStrLn "eating bread"
+      task "salad: /drink/coke" $ putStrLn "nice salad"
+
+
+    namespace "drink" $ do
+
+      task "coke" $ putStrLn "drinking coke"
+
+then
+
+    ./.nemesis bread =>
+    .nemesis: bread does not exist!
+    
+    ./.nemesis eat/bread =>
+    drinking coke
+    nice salad
+    eating bread
+    
+    
+
 Advance usage
 -------------
 

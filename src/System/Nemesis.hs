@@ -16,6 +16,7 @@ data Task = Task
   , action :: IO ()
   , deps :: [String]
   , description :: Maybe String
+  , namespace :: [String]
   }
 
 data Nemesis = Nemesis
@@ -23,27 +24,34 @@ data Nemesis = Nemesis
     tasks :: Map String Task
   , target :: String
   , current_desc :: Maybe String
+  , current_namespace :: [String]
   }
   deriving (Show)
 
 instance Default Nemesis where
-  def = Nemesis empty def def
+  def = Nemesis empty def def def
 
 instance Default Task where
-  def = Task def (return ()) def def
+  def = Task def (return ()) def def def
+
+full_name :: Task -> String
+full_name t = (t.name : t.namespace).reverse.join "/"
+
+display_name :: Task -> String
+display_name t = (t.name : t.namespace).reverse.map (rjust 10 ' ') .join " "
 
 instance Show Task where
   show x = case x.description of
     Nothing -> title
     Just s -> title ++ s
     where
-      title = x.name.ljust 20 ' ' ++ ": "
+      title = x.display_name.rjust 34 ' ' ++ ": "
 
 instance Eq Task where
   a == b = a.name == b.name
 
 instance Ord Task where
-  compare = compare_by name
+  compare = compare_by full_name
 
 type Unit = StateT Nemesis IO ()
 
@@ -67,9 +75,16 @@ insert_task :: Task -> Unit
 insert_task t = do
   n <- get
   let description = n.current_desc
-      tasks' = n.tasks.insert (t.name) t {description}
-     
+      namespace   = n.current_namespace
+      deps'       = t.deps.map (with_current namespace)
+      task        = t {deps = deps', description, namespace}
+      tasks'      = n.tasks.insert (task.full_name) task
+
   put n {tasks = tasks', current_desc = Nothing}
+  where
+    with_current namespace x
+      | x.starts_with "/" = x.tail
+      | otherwise = (x : namespace).reverse.join "/"
 
 run_nemesis :: Nemesis -> IO ()
 run_nemesis n = run' (n.target)

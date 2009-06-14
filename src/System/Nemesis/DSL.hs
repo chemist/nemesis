@@ -31,6 +31,23 @@ task s action =
     task' name deps = insert_task def {name, deps, action}
     strip = dropWhile (== ' ') > reverse > dropWhile (== ' ') > reverse
 
+namespace :: String -> Unit -> Unit
+namespace name unit = do
+  push name
+  unit
+  pop
+  
+  where
+    push s = do
+      n <- get
+      let current_namespace' = s : n.current_namespace
+      put n {current_namespace = current_namespace'}
+    
+    pop = do
+      n <- get
+      let current_namespace' = n.current_namespace.tail
+      put n {current_namespace = current_namespace'}
+      
 sh :: String -> IO ()
 sh s = do
   status <- system s
