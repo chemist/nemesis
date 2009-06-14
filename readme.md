@@ -72,16 +72,18 @@ run `./.nemesis learn-haskell`
 ### Namespace
 
 Suppose you have the following tasks
+    
+    nemesis = do
+    
+      namespace "eat" $ do
 
-    namespace "eat" $ do
-
-      task "bread: salad" $ putStrLn "eating bread"
-      task "salad: /drink/coke" $ putStrLn "nice salad"
+        task "bread: salad" $ putStrLn "eating bread"
+        task "salad: /drink/coke" $ putStrLn "nice salad"
 
 
-    namespace "drink" $ do
+      namespace "drink" $ do
 
-      task "coke" $ putStrLn "drinking coke"
+        task "coke" $ putStrLn "drinking coke"
 
 then
 
