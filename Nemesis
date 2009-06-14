@@ -24,6 +24,9 @@ nemesis = do
   desc "start console"
   task "i" (sh "ghci -isrc src/System/Nemesis/DSL.hs")
 
+  desc "show sloc"
+  task "stat" $ do
+    sh "cloc -match-f=hs$ --quiet ."
 
   -- test for readme
 
