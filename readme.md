@@ -139,7 +139,6 @@ Save typing by aliasing `./.nemesis` to `n`, i.e. inside `.your_shellrc`
 
     alias n="./.nemesis"
 
-
-<p align="center"><img src="http://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg" alt="mnemosyne" height="300" width="400"></p>
+<div align="center"><img src="http://github.com/nfjinjing/nemesis/blob/master/mnemosyne.jpg?raw=true" alt="mnemosyne" height="300" width="400"></div>
 
 OK, she's not nemesis, but cool enough.
