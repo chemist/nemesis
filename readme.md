@@ -66,7 +66,7 @@ run `./.nemesis`
     mark                              : Hunter's mark
     pet-attack                        : Pet attack
 
-run `./.nemesis learn-haskell`
+run `./.nemesis attack`
 
     casting hunter's mark
     pet attack
