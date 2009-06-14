@@ -57,9 +57,9 @@ It will generate a bin `.nemesis` inside your current folder.
 
 run `./.nemesis`
 
-         learn-fp: learn Functional Programming
-    learn-haskell: learn Haskell
-       learn-lisp: learn LISP
+    earn-fp                           : learn Functional Programming
+    learn-haskell                     : learn Haskell
+    learn-lisp                        : learn LISP
     
 
 run `./.nemesis learn-haskell`

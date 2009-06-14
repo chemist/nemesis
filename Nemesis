@@ -24,13 +24,31 @@ nemesis = do
   desc "start console"
   task "i" (sh "ghci -isrc src/System/Nemesis/DSL.hs")
 
-  namespace "eat" $ do
+
+  -- test for readme
+
+  -- desc is optional, it gives some description to the following task
+  desc "learn Haskell"
+  
+  -- syntax: task "keyword: dependencies" io-action
+  task "learn-haskell: learn-fp" (putStrLn "Haskell is awesome!")
+  
+  desc "learn Functional Programming"
+  task "learn-fp: learn-lisp" $ do
+    sh "echo 'into FP'"
+  
+  desc "learn LISP"
+  task "learn-lisp" $ do
+    sh "echo 'LISP is cool!'"
     
+    
+    
+  namespace "eat" $ do
+
     task "bread: salad" $ putStrLn "eating bread"
     task "salad: /drink/coke" $ putStrLn "nice salad"
-    
-  
+
+
   namespace "drink" $ do
-    
+
     task "coke" $ putStrLn "drinking coke"
-    
