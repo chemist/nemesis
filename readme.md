@@ -143,4 +143,4 @@ Save typing by aliasing `./.nemesis` to `n`, i.e. inside `.your_shellrc`
 
 ![mnemosyne](http://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg)
 
-OK, she's actually mnemosyne, a cool goddess anyway.
+OK, she's actually mnemosyne, a cool goddess none the less.
