@@ -53,20 +53,16 @@ Put the following code into a file named `Nemesis`
       task "auto-attack" $ do
         sh "echo 'auto shoot'"
 
-run `nemesis`
-
-It will generate a bin `.nemesis` inside your current folder.
-
 ### Run
 
-run `./.nemesis`
+run `nemesis`
 
     attack                            : Hunter attack macro
     auto-attack                       : Auto attack
     mark                              : Hunter's mark
     pet-attack                        : Pet attack
 
-run `./.nemesis attack`
+run `nemesis attack`
 
     casting hunter's mark
     pet attack
@@ -92,14 +88,13 @@ Suppose you have the following tasks
 
 then
 
-    ./.nemesis bread =>
+    nemesis bread =>
     .nemesis: bread does not exist!
     
-    ./.nemesis eat/bread =>
+    nemesis eat/bread =>
     drinking coke
     nice salad
     eating bread
-    
     
 
 Advance usage
@@ -132,14 +127,7 @@ If you don't want `nemesis` to compile `Nemesis` through intermediate `nemesis-t
 
 The logic is that whenever `main` is defined in `Nemesis.hs`, `nemesis` will act as `ghc --make` wrapper, so you can get nice error messages.
 
-Hint
-----
-
-Save typing by aliasing `./.nemesis` to `n`, i.e. inside `.your_shellrc`
-
-    alias n="./.nemesis"
-
-
+### That's it!
 
 ![mnemosyne](http://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg)
 

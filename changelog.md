@@ -1,3 +1,10 @@
+2009.6.24
+---------
+
+### Feature
+
+* enrich `nemesis` to do task management too
+
 2009.6.14.3
 -----------
 

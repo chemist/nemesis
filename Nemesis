@@ -23,6 +23,9 @@ nemesis = do
 
   desc "start console"
   task "i" (sh "ghci -isrc src/System/Nemesis/DSL.hs")
+  
+
+  task "runner" (sh "ghci -isrc src/System/Nemesis/Runner.hs")
 
   desc "show sloc"
   task "stat" $ do

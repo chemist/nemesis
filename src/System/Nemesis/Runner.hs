@@ -1,8 +1,12 @@
+import Control.Monad hiding (join)
 import Data.List (find)
+import Data.Time.Clock.POSIX
 import Prelude hiding ((.), (>), (^))
+import System
 import System.Cmd
+import System.Directory
 import System.Nemesis.Util
-
+import System.Time
 
 start, end :: String
 start = start_nemesis ++ start_nemesis_dsl
@@ -13,6 +17,32 @@ end = "\nmain = run nemesis\n"
 
 main :: IO ()
 main = do
+  recompile <- should_recompile
+  when recompile compile
+  
+  args <- getArgs
+  system $ "./.nemesis " ++ args.join " "
+  return ()
+  
+  where
+    bin = ".nemesis"
+    src = "Nemesis"
+    should_recompile = do
+      bin_exists <- doesFileExist bin
+      if bin_exists
+        then do
+          bin_stamp <- bin.file_mtime
+          src_stamp <- src.file_mtime
+          return $ bin_stamp < src_stamp
+        else return True
+    
+    file_mtime path = 
+      getModificationTime path ^ seconds ^ posixSecondsToUTCTime
+    
+    seconds (TOD s _) = s.fromIntegral
+
+compile :: IO ()
+compile = do
   dir <- ls "."
   let src_name = dir.filter (belongs_to possible_source) .get_name
       src_o  = src_base_name src_name ++ ".o"
