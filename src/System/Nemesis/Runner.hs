@@ -3,10 +3,12 @@ import Data.List (find)
 import Data.Time.Clock.POSIX
 import Prelude hiding ((.), (>), (^))
 import System
+import System.Cmd
 import System.Directory
 import System.Nemesis.Util
 import System.Time
 import System.Nemesis.DSL
+
 
 start, end :: String
 start = start_nemesis ++ start_nemesis_dsl
@@ -21,7 +23,7 @@ main = do
   when recompile compile
   
   args <- getArgs
-  sh $ "./.nemesis " ++ args.join " "
+  system $ "./.nemesis " ++ args.join " "
   return ()
   
   where
