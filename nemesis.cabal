@@ -32,3 +32,4 @@ Executable            nemesis
   hs-source-dirs:     src/
   main-is:            System/Nemesis/Runner.hs
   other-modules:      System.Nemesis.Util
+                      System.Nemesis.DSL

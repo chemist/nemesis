@@ -3,10 +3,10 @@ import Data.List (find)
 import Data.Time.Clock.POSIX
 import Prelude hiding ((.), (>), (^))
 import System
-import System.Cmd
 import System.Directory
 import System.Nemesis.Util
 import System.Time
+import System.Nemesis.DSL
 
 start, end :: String
 start = start_nemesis ++ start_nemesis_dsl
@@ -21,7 +21,7 @@ main = do
   when recompile compile
   
   args <- getArgs
-  system $ "./.nemesis " ++ args.join " "
+  sh $ "./.nemesis " ++ args.join " "
   return ()
   
   where
@@ -56,14 +56,14 @@ compile = do
 
   if ((patch_end ++ patch_start).null && src_name.ends_with ".hs")
     then do
-      system $ "ghc --make -O1 " ++ src_name ++ " -o " ++ bin
+      sh $ "ghc --make -O1 " ++ src_name ++ " -o " ++ bin
       rm src_o
       rm src_hi
     else do
       if t.null
         then output_tmp $ patch_start ++ h ++ patch_end
         else output_tmp $ h ++ patch_start ++ "\n" ++ t ++ patch_end
-      system $ "ghc --make -O1 " ++ tmp_name ++ " -o " ++ bin
+      sh $ "ghc --make -O1 " ++ tmp_name ++ " -o " ++ bin
       rm tmp_name
       rm tmp_o
       rm tmp_hi
