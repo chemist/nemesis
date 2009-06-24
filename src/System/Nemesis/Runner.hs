@@ -28,12 +28,12 @@ main = do
     bin = ".nemesis"
     should_recompile = do
       bin_exists <- doesFileExist bin
-      if bin_exists
-        then do
+      if not bin_exists
+        then return True
+        else do
           bin_stamp <- bin.file_mtime
           src_stamp <- get_src_name >>= file_mtime
           return $ bin_stamp < src_stamp
-        else return True
     
     file_mtime path = 
       getModificationTime path ^ seconds ^ posixSecondsToUTCTime
