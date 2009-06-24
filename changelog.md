@@ -4,6 +4,7 @@
 ### Fix
 
 * fail when can not compile
+* detect all possible nemesis name
 
 2009.6.24
 ---------
