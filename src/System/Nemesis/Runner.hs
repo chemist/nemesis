@@ -26,13 +26,12 @@ main = do
   
   where
     bin = ".nemesis"
-    src = "Nemesis"
     should_recompile = do
       bin_exists <- doesFileExist bin
       if bin_exists
         then do
           bin_stamp <- bin.file_mtime
-          src_stamp <- src.file_mtime
+          src_stamp <- get_src_name >>= file_mtime
           return $ bin_stamp < src_stamp
         else return True
     
@@ -41,11 +40,19 @@ main = do
     
     seconds (TOD s _) = s.fromIntegral
 
+get_src_name :: IO String
+get_src_name = do
+  dir <- ls "."
+  return $ dir.filter (belongs_to possible_source) .get_name
+  where
+    possible_source = ["Nemesis", "nemesis", "Nemesis.hs", "nemesis.hs"]
+    get_name []     = error "Nemesis does not exist!"
+    get_name xs     = xs.first
+
 compile :: IO ()
 compile = do
-  dir <- ls "."
-  let src_name = dir.filter (belongs_to possible_source) .get_name
-      src_o  = src_base_name src_name ++ ".o"
+  src_name <- get_src_name
+  let src_o  = src_base_name src_name ++ ".o"
       src_hi = src_base_name src_name ++ ".hi"
   src <- readFile src_name
   
@@ -71,9 +78,6 @@ compile = do
   where
 
     main_src        = "main ="
-    get_name []     = error "Nemesis does not exist!"
-    get_name xs     = xs.first
-    possible_source = ["Nemesis", "nemesis", "nemesis.hs", "Nemesis.hs"]
     sep             = "-- nem"
     output_tmp      = writeFile tmp_name
     tmp_name        = "nemesis-tmp.hs"
