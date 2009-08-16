@@ -6,7 +6,7 @@ import Control.Monad.State hiding (State, join)
 import Data.Default
 import Data.List (sort)
 import Data.Map (Map, insert, empty, lookup, elems)
-import Prelude hiding ((.), (>), (^), lookup)
+import Prelude hiding ((.), (>), (^), lookup, (-))
 import System
 import System.Nemesis.Util
 
@@ -94,11 +94,11 @@ run_nemesis n = run' (n.target)
       Nothing -> bye
       Just x -> revenge x
       where
-        bye = error $ s ++  " does not exist!"
+        bye = error - s ++  " does not exist!"
 
     revenge :: Task -> IO ()
     revenge t = t.deps.mapM_ run' >> revenge_and_say
       where
         revenge_and_say = do
-          -- putStrLn $ "running: " ++ t.name
+          -- putStrLn - "running: " ++ t.name
           t.action

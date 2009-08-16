@@ -5,7 +5,7 @@ module System.Nemesis.DSL where
 import Control.Monad.State hiding (State, join)
 import Data.Default
 import Data.List (nub, sort)
-import Prelude hiding ((.), (>), (^), lookup)
+import Prelude hiding ((.), (>), (^), (-), lookup)
 import System
 import System.Directory
 import System.FilePath.Glob
@@ -53,17 +53,17 @@ sh s = do
   status <- system s
   case status of 
     ExitSuccess -> return ()
-    ExitFailure code -> error $ s ++ " failed with status code: " ++ show code
+    ExitFailure code -> error - s ++ " failed with status code: " ++ show code
 
 clean :: [String] -> Unit
 clean xs = do
   desc "Remove any temporary products."
-  task "clean" $ do
+  task "clean" - do
     paths <- globDir (xs.map compile) "." ^ fst ^ join' ^ nub ^ sort ^ reverse
     mapM_ rm_any paths
     where
       rm_any s = do
         file_exist <- doesFileExist s
-        when file_exist $ rm s
+        when file_exist - rm s
         dir_exist <- doesDirectoryExist s
-        when dir_exist $ rm_rf s
+        when dir_exist - rm_rf s
