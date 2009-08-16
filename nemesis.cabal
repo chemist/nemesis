@@ -1,5 +1,5 @@
 Name:                 nemesis
-Version:              2009.8.16
+Version:              2009.8.17
 Build-type:           Simple
 Synopsis:             a Rake like task management tool
 Description:          smart per project code snippets

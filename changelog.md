@@ -1,3 +1,10 @@
+2009.8.17
+---------
+
+### Feature
+
+* use - syntax in Nemesis file
+
 2009.8.16
 ---------
 
