@@ -11,12 +11,12 @@ import System.Nemesis.DSL
 
 
 start, end :: String
-start = start_nemesis ++ start_nemesis_dsl ++ init_mps ++ init_preluse
+start = start_nemesis ++ start_nemesis_dsl ++ init_mps ++ init_prelude
   where 
     start_nemesis     = "import System.Nemesis (run)\n"
     start_nemesis_dsl = "import System.Nemesis.DSL\n"
-    init_mps        = "import MPS.Light ((-))\n"
-    init_preluse    = "import Prelude hiding ((-))\n"
+    init_mps          = "import MPS.Light ((-))\n"
+    init_prelude      = "import Prelude hiding ((-))\n"
 end = "\nmain = run nemesis\n"
 
 main :: IO ()
