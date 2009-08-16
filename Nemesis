@@ -1,6 +1,3 @@
-import MPS ((-))
-import Prelude hiding ((-))
-
 nemesis = do
   
   clean
