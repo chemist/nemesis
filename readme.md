@@ -119,7 +119,9 @@ If you don't want `nemesis` to compile `Nemesis` through intermediate `nemesis-t
 
     import System.Nemesis (run)
     import System.Nemesis.DSL
-
+    import MPS.Light ((-))
+    import Prelude hiding ((-))
+    
     nemesis = do
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
         
