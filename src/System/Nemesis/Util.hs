@@ -1,17 +1,16 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
 module System.Nemesis.Util (
-    module MPS.Light
+    module MPS.Env
   , ls
   , rm
   , rm_rf
 ) where
 
 import System.Directory
-import MPS.Light
-import Prelude hiding ((^), (.), (>))
+import MPS.Env hiding (lookup)
+import Prelude ()
 import Data.List ((\\))
-
 
 ls :: String -> IO [String]
 ls s = getDirectoryContents s ^ (\\ [".", ".."])

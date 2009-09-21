@@ -6,7 +6,7 @@ import Control.Monad.State hiding (State, join)
 import Data.Default
 import Data.List (sort)
 import Data.Map (Map, insert, empty, lookup, elems)
-import Prelude hiding ((.), (>), (^), lookup)
+import Prelude ()
 import System
 import System.Nemesis.Util
 
