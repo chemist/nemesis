@@ -1,3 +1,29 @@
+2009.8.18
+---------
+
+### Fix
+
+* mps dep
+
+2009.8.17
+---------
+
+### Feature
+
+* use - syntax in Nemesis file
+
+2009.8.16
+---------
+
+### Feature
+
+* no $ noise
+
+2009.8.4
+--------
+
+### Fix for MPS ljust / rjust bug
+
 2009.6.25
 ---------
 

@@ -12,14 +12,14 @@ Demo
         , "manifest"
         ]
         
-      task "dist" $ do
+      task "dist" - do
         sh "cabal clean"
         sh "cabal configure"
         sh "cabal sdist"
 
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
 
-      task "manifest" $ do
+      task "manifest" - do
         sh "find . | grep 'hs$' > manifest"
 
 Tutorial
@@ -42,15 +42,15 @@ Put the following code into a file named `Nemesis`
       task "attack: pet-attack auto-attack" (putStrLn "attack macro done!")
 
       desc "Pet attack"
-      task "pet-attack: mark" $ do
+      task "pet-attack: mark" - do
         sh "echo 'pet attack'"
 
       desc "Hunter's mark"
-      task "mark" $ do
+      task "mark" - do
         sh "echo \"casting hunter's mark\""
 
       desc "Auto attack"
-      task "auto-attack" $ do
+      task "auto-attack" - do
         sh "echo 'auto shoot'"
 
 ### Run
@@ -76,15 +76,15 @@ Suppose you have the following tasks
     
     nemesis = do
     
-      namespace "eat" $ do
+      namespace "eat" - do
 
-        task "bread: salad" $ putStrLn "eating bread"
-        task "salad: /drink/coke" $ putStrLn "nice salad"
+        task "bread: salad" - putStrLn "eating bread"
+        task "salad: /drink/coke" - putStrLn "nice salad"
 
 
-      namespace "drink" $ do
+      namespace "drink" - do
 
-        task "coke" $ putStrLn "drinking coke"
+        task "coke" - putStrLn "drinking coke"
 
 then
 
@@ -119,7 +119,9 @@ If you don't want `nemesis` to compile `Nemesis` through intermediate `nemesis-t
 
     import System.Nemesis (run)
     import System.Nemesis.DSL
-
+    import MPS.Light ((-))
+    import Prelude hiding ((-))
+    
     nemesis = do
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
         
