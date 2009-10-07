@@ -45,7 +45,7 @@ instance Show Task where
     Nothing -> title
     Just s -> title ++ s
     where
-      title = x.display_name.ljust 34 ' ' ++ ": "
+      title = x.display_name.ljust 44 ' ' ++ ": "
 
 instance Eq Task where
   a == b = a.name == b.name

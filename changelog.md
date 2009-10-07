@@ -1,3 +1,10 @@
+2009.10.7
+---------
+
+### Feature
+
+* allows 3 namespaces to be displayed in menu
+
 2009.8.18
 ---------
 
