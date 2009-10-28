@@ -129,8 +129,4 @@ If you don't want `nemesis` to compile `Nemesis` through intermediate `nemesis-t
 
 The logic is that whenever `main` is defined in `Nemesis.hs`, `nemesis` will act as `ghc --make` wrapper, so you can get nice error messages.
 
-### That's it!
-
-![mnemosyne](http://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg)
-
 OK, she's actually mnemosyne, a cool goddess none the less.
