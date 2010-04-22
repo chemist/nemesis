@@ -26,7 +26,7 @@ main = do
   when recompile compile
   
   args <- getArgs
-  system - "./.nemesis " ++ args.join " "
+  system - "s./.nemesis " ++ args.join " "
   return ()
   
   where
