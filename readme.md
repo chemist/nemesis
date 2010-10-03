@@ -27,7 +27,8 @@ Tutorial
 
 ### Install
 
-    cabal update; cabal install nemesis
+    cabal update
+    cabal install nemesis
 
 ### DSL
 
@@ -128,6 +129,8 @@ For example:
 
     import System.Nemesis (run)
     import System.Nemesis.DSL
+    -- import MPS.Env ((-))
+    -- import Prelude ()
     
     nemesis = do
       task "hello" (sh "echo 'hello world'")
