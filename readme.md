@@ -130,7 +130,7 @@ For example:
     import System.Nemesis (run)
     import System.Nemesis.DSL
     -- import MPS.Env ((-))
-    -- import Prelude ()
+    -- import Prelude hiding ((-))
     
     nemesis = do
       task "hello" (sh "echo 'hello world'")
