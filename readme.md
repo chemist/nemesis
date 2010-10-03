@@ -102,7 +102,7 @@ Advance usage
 
 ### Use LANGUAGE pragma
 
-Put a `-- Nem` token after the `Langauge` progma
+Put a `-- Nem` line after the `Langauge` pragma
 
     {-# LANGUAGE QuasiQuotes #-}
 
