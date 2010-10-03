@@ -41,11 +41,7 @@ display_name :: Task -> String
 display_name t = (t.name : t.namespace).reverse.map (ljust 10 ' ') .join " "
 
 instance Show Task where
-  show x = case x.description of
-    Nothing -> title
-    Just s -> title ++ s
-    where
-      title = x.display_name.ljust 44 ' ' ++ ": "
+  show = show_with_ljust 44
 
 instance Eq Task where
   a == b = a.name == b.name
@@ -55,6 +51,11 @@ instance Ord Task where
 
 type Unit = StateT Nemesis IO ()
 
+show_with_ljust :: Int -> Task -> String
+show_with_ljust n task=
+  case task.description of
+    Nothing -> task.full_name
+    Just x -> task.full_name.ljust n ' ' + x
 
 run :: Unit -> IO ()
 run unit = do
@@ -66,8 +67,12 @@ run unit = do
   where
     help = execStateT unit def >>= list_task
     list_task n = do
+      let _tasks = n.tasks.elems
+      
+          _task_len = _tasks.map (full_name > length) .maximum + 5
+      
       br
-      n.tasks.elems.sort.mapM_ print
+      n.tasks.elems.sort.map (show_with_ljust _task_len) .mapM_ putStrLn
       br
     br = putStrLn ""
 

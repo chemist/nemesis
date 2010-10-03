@@ -62,3 +62,8 @@ nemesis = do
   namespace "drink" - do
 
     task "coke" - putStrLn "drinking coke"
+    
+  
+  desc "test"
+  task "test" - do
+    sh "runghc test/N1.hs"
