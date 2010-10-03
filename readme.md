@@ -125,13 +125,13 @@ For example:
     import System.Nemesis.DSL
     
     nemesis = do
-      task "i" (sh "ghci -isrc src/System/Nemesis.hs")
+      task "hello" (sh "echo 'hello world'")
         
     main = run nemesis
 
 Try:
 
-    runghc Nemesis
+    runghc Nemesis hello
 
 
 ### Who is mnemosyne?
