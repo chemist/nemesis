@@ -133,7 +133,7 @@ For example:
 
 Test out by:
 
-  runghc Nemesis
+    runghc Nemesis
 
 
 ### Who is mnemosyne?
