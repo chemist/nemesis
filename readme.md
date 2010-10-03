@@ -100,7 +100,7 @@ then
 Advance usage
 -------------
 
-### Use LANGUAGE progam
+### Use LANGUAGE pragma
 
 Put a `-- Nem` token after the `Langauge` progma
 
