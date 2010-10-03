@@ -97,6 +97,11 @@ then
     eating bread
     
 
+Hints
+-----
+
+Please add `.nemesis` to `.gitignore` or equivalents.
+
 Advance usage
 -------------
 
