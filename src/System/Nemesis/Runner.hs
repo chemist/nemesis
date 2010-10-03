@@ -9,6 +9,7 @@ import System.Nemesis.Util
 import System.Time
 import System.Nemesis.DSL
 import qualified Prelude as P
+import Data.Maybe
 
 
 start, end :: String
@@ -26,7 +27,7 @@ main = do
   when recompile compile
   
   args <- getArgs
-  system - "s./.nemesis " ++ args.join " "
+  system - "./.nemesis " ++ args.join " "
   return ()
   
   where
@@ -61,8 +62,8 @@ compile = do
       src_hi = src_base_name src_name ++ ".hi"
   src <- readFile src_name
   
-  let maybe_patch_end   = patch_src main_src_prefix src end
-      maybe_patch_start = patch_src main_src_prefix src start
+  let maybe_patch_end   = yield_string_if_no_line_starts_with     main_src_prefix src end
+      maybe_patch_start = yield_string_if_no_line_starts_with     main_src_prefix src start
       
       __nem_seperated_header = src.lines.takeWhile (lower > starts_with sep > not) .unlines
       __nem_seperated_footer = src.lines.dropWhile (lower > starts_with sep > not) .unlines
