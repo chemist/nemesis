@@ -115,7 +115,7 @@ currently the separator `-- Nem` is hard coded
 
 ### Bypass preprocessing, e.g. use custom imports
 
-Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor look for the function main, if it's defined, it skip preprocessing.
+Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor look for the function main, if it's defined, it skips the preprocessing.
 
 This enables Nemesis to because pure EDSL in Haskell, which can be invoked by `runghc`.
 
@@ -131,7 +131,7 @@ For example:
         
     main = run nemesis
 
-Test out by:
+Try:
 
     runghc Nemesis
 
