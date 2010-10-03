@@ -113,7 +113,7 @@ Put a `-- Nem` token after the `Langauge` progma
 
 currently the separator `-- Nem` is hard coded
 
-### By pass preprocessing, e.g. use custom imports
+### Bypass preprocessing, e.g. use custom imports
 
 Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor look for the function main, if it's defined, it skip preprocessing, and Nemesis because pure EDSL that can be run by `runhaskell`.
 
