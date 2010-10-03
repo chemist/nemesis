@@ -120,7 +120,7 @@ currently the separator `-- Nem` is hard coded
 
 ### Bypass preprocessing, i.e. run as EDSL
 
-Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor look for the function main, if it's defined, it skips the preprocessing.
+Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor look for the function main, if it's defined, preprocessing is skipped.
 
 This turns `Nemesis` into a pure EDSL in Haskell, which can be invoked by `runghc`.
 
