@@ -61,20 +61,22 @@ compile = do
       src_hi = src_base_name src_name ++ ".hi"
   src <- readFile src_name
   
-  let patch_end   = patch_src main_src src end
-      patch_start = patch_src main_src src start
-      h = src.lines.takeWhile (lower > starts_with sep > not) .unlines
-      t = src.lines.dropWhile (lower > starts_with sep > not) .unlines
+  let maybe_patch_end   = patch_src main_src_prefix src end
+      maybe_patch_start = patch_src main_src_prefix src start
+      
+      __nem_seperated_header = src.lines.takeWhile (lower > starts_with sep > not) .unlines
+      __nem_seperated_footer = src.lines.dropWhile (lower > starts_with sep > not) .unlines
 
-  if ((patch_end ++ patch_start).null && src_name.ends_with ".hs")
+  if (maybe_patch_end.isNothing && maybe_patch_start.isNothing && src_name.ends_with ".hs")
     then do
       sh - "ghc --make -O1 " ++ src_name ++ " -o " ++ bin
       rm src_o
       rm src_hi
     else do
-      if t.null
-        then output_tmp - patch_start ++ h ++ patch_end
-        else output_tmp - h ++ patch_start ++ "\n" ++ t ++ patch_end
+      if __nem_seperated_footer.null
+        then output_tmp - maybe_patch_start.fromMaybe "" ++ __nem_seperated_header ++ maybe_patch_end.fromMaybe ""
+        else output_tmp - __nem_seperated_header ++ maybe_patch_start.fromMaybe "" ++ "\n" ++ __nem_seperated_footer ++ maybe_patch_end.fromMaybe ""
+        
       sh - "ghc --make -O1 " ++ tmp_name ++ " -o " ++ bin
       rm tmp_name
       rm tmp_o
@@ -82,7 +84,8 @@ compile = do
   
   where
 
-    main_src        = "main ="
+    main_src_prefix = "main ="
+    
     sep             = "-- nem"
     output_tmp      = writeFile tmp_name
     tmp_name        = "nemesis-tmp.hs"
@@ -92,8 +95,9 @@ compile = do
     src_base_name s = if s.ends_with ".hs" 
                         then s.reverse.drop 3.reverse
                         else s
-    patch_src l s p = case s.lines.find (starts_with l) of
-                        Nothing -> p
-                        Just _ -> ""
+                        
+    yield_string_if_no_line_starts_with prefix str yield = case str.lines.find (starts_with prefix) of
+                        Nothing -> Just yield
+                        Just _ -> Nothing
     
 

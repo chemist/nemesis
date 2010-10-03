@@ -100,9 +100,9 @@ then
 Advance usage
 -------------
 
-### Use LANGUAGE
+### Use LANGUAGE progam
 
-Use a separator below language extensions, e.g.
+Put a `-- Nem` token after the `Langauge` progma
 
     {-# LANGUAGE QuasiQuotes #-}
 
@@ -113,9 +113,11 @@ Use a separator below language extensions, e.g.
 
 currently the separator `-- Nem` is hard coded
 
-### Build it yourself
+### By pass preprocessing, e.g. use custom imports
 
-If you don't want `nemesis` to compile `Nemesis` through intermediate `nemesis-tmp.hs` file, rename your `Nemesis` to `Nemesis.hs`, then start with this template.
+Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor look for the function main, if it's defined, it skip preprocessing, and Nemesis because pure EDSL that can be run by `runhaskell`.
+
+For example:
 
     import System.Nemesis (run)
     import System.Nemesis.DSL
@@ -127,7 +129,9 @@ If you don't want `nemesis` to compile `Nemesis` through intermediate `nemesis-t
         
     main = run nemesis
 
-The logic is that whenever `main` is defined in `Nemesis.hs`, `nemesis` will act as `ghc --make` wrapper, so you can get nice error messages.
+Test out by:
+
+  runghc Nemesis
 
 
 ### Who is mnemosyne?
