@@ -101,7 +101,8 @@ then
 Hints
 -----
 
-Please add `.nemesis` to `.gitignore` or equivalents.
+* Please add `.nemesis` to `.gitignore` or equivalents.
+* alias `nemesis` to something sweeter, e.g. `n`
 
 Advance usage
 -------------
