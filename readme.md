@@ -36,7 +36,7 @@ Put the following code into a file named `Nemesis`
 
     nemesis = do
     
-      -- desc is optional, it gives some description to the following task
+      -- desc is optional, it gives some description to task that follows
       desc "Hunter attack macro"
 
       -- syntax: task "keyword: dependencies" io-action
@@ -58,10 +58,10 @@ Put the following code into a file named `Nemesis`
 
 run `nemesis`
 
-    attack                            : Hunter attack macro
-    auto-attack                       : Auto attack
-    mark                              : Hunter's mark
-    pet-attack                        : Pet attack
+    attack          Hunter attack macro
+    auto-attack     Auto attack
+    mark            Hunter's mark
+    pet-attack      Pet attack
 
 run `nemesis attack`
 
@@ -121,9 +121,9 @@ currently the separator `-- Nem` is hard coded
 
 ### Bypass preprocessing, i.e. run as EDSL
 
-Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor looks for the function main, if it's defined, preprocessing is skipped.
+Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor looks for the function `main`, if it's defined, preprocessing is skipped.
 
-This turns `Nemesis` into a pure EDSL in Haskell, which can be invoked by `runghc`.
+This turns `Nemesis` into an EDSL in Haskell, runnable by `runghc`.
 
 For example:
 
