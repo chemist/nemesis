@@ -36,7 +36,7 @@ Put the following code into a file named `Nemesis`
 
     nemesis = do
     
-      -- desc is optional, it gives some description to task that follows
+      -- desc is optional, it gives some description to the task that follows
       desc "Hunter attack macro"
 
       -- syntax: task "keyword: dependencies" io-action
