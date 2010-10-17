@@ -148,4 +148,4 @@ Try:
 
 ![mnemosyne](http://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg)
 
-OK, I made a mistake in the project name, but she's a cool goddess none the less.
+[The goddess](http://en.wikipedia.org/wiki/Mnemosyne_\(anime\)) is watching you, you shall have your revenge.
