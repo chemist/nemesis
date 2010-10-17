@@ -144,7 +144,7 @@ Try:
     runghc Nemesis hello
 
 
-### Who is mnemosyne?
+<br/>
 
 ![mnemosyne](http://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg)
 
