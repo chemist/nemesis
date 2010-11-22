@@ -146,6 +146,6 @@ Try:
 
 <br/>
 
-![mnemosyne](http://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg)
+![mnemosyne](https://github.com/nfjinjing/nemesis/raw/master/mnemosyne.jpg)
 
 [The goddess](http://en.wikipedia.org/wiki/Mnemosyne_\(anime\)) is watching you, you shall have your revenge.
