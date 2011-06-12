@@ -1,6 +1,6 @@
 import System.Nemesis (run)
 import System.Nemesis.DSL
-import MPS.Env ((-))
+import Air.Env ((-))
 import Prelude hiding ((-))
 
 nemesis = do

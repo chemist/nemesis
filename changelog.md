@@ -29,7 +29,7 @@
 2009.8.4
 --------
 
-### Fix for MPS ljust / rjust bug
+### Fix for Air ljust / rjust bug
 
 2009.6.25
 ---------
