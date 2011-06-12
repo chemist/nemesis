@@ -1,3 +1,9 @@
+import System.Nemesis.Env
+import Air.Env ((-))
+import Prelude hiding ((-))
+
+main = run nemesis
+
 nemesis = do
   
   clean

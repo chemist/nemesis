@@ -128,16 +128,16 @@ This turns `Nemesis` into an EDSL in Haskell, runnable by `runghc`.
 
 For example:
 
-    import System.Nemesis (run)
-    import System.Nemesis.DSL
+    import System.Nemesis.Env
     import Air.Env ((-))
     import Prelude hiding ((-))
+
+    main = run nemesis
     
     nemesis = do
       task "hello" - do
         sh "echo 'hello world'"
         
-    main = run nemesis
 
 Try:
 
