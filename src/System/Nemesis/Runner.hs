@@ -13,7 +13,7 @@ import Data.Maybe
 
 
 start, end :: String
-start = start_nemesis ++ start_nemesis_dsl ++ init_mps ++ init_prelude
+start = start_nemesis + start_nemesis_dsl + init_air + init_prelude
   where 
     start_nemesis     = "import System.Nemesis (run)\n"
     start_nemesis_dsl = "import System.Nemesis.DSL\n"
@@ -27,7 +27,7 @@ main = do
   when recompile compile
   
   args <- getArgs
-  system - "./.nemesis " ++ args.join " "
+  system - "./.nemesis " + args.join " "
   return ()
   
   where
@@ -58,8 +58,8 @@ get_src_name = do
 compile :: IO ()
 compile = do
   src_name <- get_src_name
-  let src_o  = src_base_name src_name ++ ".o"
-      src_hi = src_base_name src_name ++ ".hi"
+  let src_o  = src_base_name src_name + ".o"
+      src_hi = src_base_name src_name + ".hi"
   src <- readFile src_name
   
   let maybe_patch_end   = yield_string_if_no_line_starts_with     main_src_prefix src end
@@ -70,15 +70,15 @@ compile = do
 
   if (maybe_patch_end.isNothing && maybe_patch_start.isNothing && src_name.ends_with ".hs")
     then do
-      sh - "ghc --make -O1 " ++ src_name ++ " -o " ++ bin
+      sh - "ghc --make -O1 " + src_name + " -o " + bin
       rm src_o
       rm src_hi
     else do
       if __nem_seperated_footer.null
-        then output_tmp - maybe_patch_start.fromMaybe "" ++ __nem_seperated_header ++ maybe_patch_end.fromMaybe ""
-        else output_tmp - __nem_seperated_header ++ maybe_patch_start.fromMaybe "" ++ "\n" ++ __nem_seperated_footer ++ maybe_patch_end.fromMaybe ""
+        then output_tmp - maybe_patch_start.fromMaybe "" + __nem_seperated_header + maybe_patch_end.fromMaybe ""
+        else output_tmp - __nem_seperated_header + maybe_patch_start.fromMaybe "" + "\n" + __nem_seperated_footer + maybe_patch_end.fromMaybe ""
         
-      sh - "ghc --make -O1 " ++ tmp_name ++ " -o " ++ bin
+      sh - "ghc --make -O1 " + tmp_name + " -o " + bin
       rm tmp_name
       rm tmp_o
       rm tmp_hi

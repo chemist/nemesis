@@ -5,7 +5,8 @@ module System.Nemesis.DSL where
 import Control.Monad.State hiding (State, join)
 import Data.Default
 import Data.List (nub, sort)
-import Prelude hiding ((.), (>), (^), (-), lookup)
+import Prelude ()
+import Air.Env
 import System
 import System.Directory
 import System.FilePath.Glob
@@ -53,7 +54,7 @@ sh s = do
   status <- system s
   case status of 
     ExitSuccess -> return ()
-    ExitFailure code -> error - s ++ " failed with status code: " ++ show code
+    ExitFailure code -> error - s + " failed with status code: " + show code
 
 clean :: [String] -> Unit
 clean xs = do

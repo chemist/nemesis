@@ -27,7 +27,7 @@ library
                       
 
 Executable            nemesis
-  build-depends:      base >= 4 && < 5, haskell98, mtl, process, containers, data-default, directory
+  build-depends:      base >= 4 && < 5, haskell98, mtl, process, containers, data-default, directory, air >= 2011.6.12
   hs-source-dirs:     src/
   main-is:            System/Nemesis/Runner.hs
   other-modules:      System.Nemesis.Util
