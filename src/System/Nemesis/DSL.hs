@@ -3,7 +3,6 @@
 module System.Nemesis.DSL where
 
 import Control.Monad.State hiding (State, join)
-import Data.Default
 import Data.List (nub, sort)
 import Prelude ()
 import Air.Env
