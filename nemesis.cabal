@@ -1,5 +1,5 @@
 Name:                 nemesis
-Version:              2011.6.19
+Version:              2011.10.12
 Build-type:           Simple
 Synopsis:             a Rake like task management tool
 Description:          smart per project code snippets
@@ -16,7 +16,7 @@ data-files:           readme.md, changelog.md, known-issues.md, Nemesis
 
 library
   ghc-options: -Wall
-  build-depends: base >= 4 && < 5, old-time, time, haskell98, mtl, process, containers, Glob >= 0.4, air >= 2011.6.19
+  build-depends: base >= 4 && < 100, old-time, time, mtl, process, containers, Glob >= 0.4, air >= 2011.6.19
   hs-source-dirs: src/
   exposed-modules:  
                       System.Nemesis
@@ -27,7 +27,7 @@ library
                       
 
 Executable            nemesis
-  build-depends:      base >= 4 && < 5, haskell98, mtl, process, containers, data-default, directory, air >= 2011.6.19
+  build-depends:      base >= 4 && < 100, mtl, process, containers, data-default, directory, air >= 2011.6.19
   hs-source-dirs:     src/
   main-is:            System/Nemesis/Runner.hs
   other-modules:      System.Nemesis.Util

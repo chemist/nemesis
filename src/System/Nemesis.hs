@@ -6,7 +6,7 @@ import Control.Monad.State hiding (State, join)
 import Data.List (sort)
 import Data.Map (Map, insert, empty, lookup, elems)
 import Prelude ()
-import System
+import System.Environment
 import System.Nemesis.Util
 
 data Task = Task

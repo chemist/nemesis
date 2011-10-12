@@ -6,7 +6,8 @@ import Control.Monad.State hiding (State, join)
 import Data.List (nub, sort)
 import Prelude ()
 import Air.Env
-import System
+import System.Exit
+import System.Process
 import System.Directory
 import System.FilePath.Glob
 import System.Nemesis

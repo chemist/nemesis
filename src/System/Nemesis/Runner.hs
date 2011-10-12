@@ -2,7 +2,7 @@ import Control.Monad hiding (join)
 import Data.List (find)
 import Data.Time.Clock.POSIX
 import Prelude ()
-import System
+import System.Environment
 import System.Cmd
 import System.Directory
 import System.Nemesis.Util
