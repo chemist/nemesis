@@ -1,5 +1,5 @@
 Name:                 nemesis
-Version:              2012.5.24
+Version:              2012.5.24.1
 Build-type:           Simple
 Synopsis:             a Rake like task management tool
 Description:          smart per project code snippets
@@ -28,6 +28,14 @@ library
                       System.Nemesis.Env
   other-modules:
                       System.Nemesis.Util
+                      
+                      System.FilePath.Glob
+                      System.FilePath.Glob.Primitive
+                      System.FilePath.Glob.Base
+                      System.FilePath.Glob.Directory
+                      System.FilePath.Glob.Match
+                      System.FilePath.Glob.Simplify
+                      System.FilePath.Glob.Utils
                       
 
 Executable            nemesis
