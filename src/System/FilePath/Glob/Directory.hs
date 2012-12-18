@@ -29,6 +29,8 @@ import System.FilePath.Glob.Utils ( getRecursiveContents
                                   , partitionDL
                                   )
 
+import System.IO.Error (catchIOError)
+
 -- The Patterns in TypedPattern don't contain PathSeparator or AnyDirectory
 --
 -- We store the number of PathSeparators that Dir and AnyDir were followed by
@@ -137,7 +139,7 @@ globDir'0 opts pat dir = do
 globDir' :: MatchOptions -> [TypedPattern] -> FilePath
          -> IO (DList FilePath, DList FilePath)
 globDir' opts pats@(_:_) dir = do
-   entries <- getDirectoryContents dir `catch` const (return [])
+   entries <- getDirectoryContents dir `catchIOError` const (return [])
 
    results <- forM entries $ \e -> matchTypedAndGo opts pats e (dir </> e)
 

@@ -33,6 +33,9 @@ import System.FilePath
 import System.Posix.Internals (sizeof_stat, lstat, s_isdir, st_mode)
 #endif
 
+
+import System.IO.Error (catchIOError)
+
 inRange :: Ord a => (a,a) -> a -> Bool
 inRange (a,b) c = c >= a && c <= b
 
@@ -125,7 +128,7 @@ doesDirectoryExist s =
 
 getRecursiveContents :: FilePath -> IO (DList FilePath)
 getRecursiveContents dir =
-   flip Prelude.catch (\_ -> return $ DL.singleton dir) $ do
+   flip catchIOError (\_ -> return $ DL.singleton dir) $ do
 
       raw <- getDirectoryContents dir
 

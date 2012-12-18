@@ -16,7 +16,7 @@ data-files:           readme.md, changelog.md, known-issues.md, Nemesis
 
 library
   ghc-options: -Wall
-  build-depends:      base >= 4 && < 100, old-time, time, mtl, process, containers, air >= 2011.6.19
+  build-depends:      base >= 4 && < 100, old-time, time, mtl, process, containers, FileManip, air >= 2011.6.19, 
                       , dlist
                       , filepath
                       , transformers
@@ -39,7 +39,7 @@ library
                       
 
 Executable            nemesis
-  build-depends:      base >= 4 && < 100, mtl, process, containers, data-default, directory, air >= 2011.6.19
+  build-depends:      base >= 4 && < 100, mtl, process, containers, data-default, directory, FileManip, air >= 2011.6.19
                       
   hs-source-dirs:     src/
   main-is:            System/Nemesis/Runner.hs
