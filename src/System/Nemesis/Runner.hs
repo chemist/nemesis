@@ -37,14 +37,10 @@ main = do
       if not bin_exists
         then return True
         else do
-          bin_stamp <- bin.file_mtime
-          src_stamp <- get_src_name >>= file_mtime
+          bin_stamp <- bin.getModificationTime
+          src_stamp <- get_src_name >>= getModificationTime
           return - bin_stamp P.< src_stamp
-    
-    file_mtime path = 
-      getModificationTime path ^ seconds ^ posixSecondsToUTCTime
-    
-    seconds (TOD s _) = s.fromIntegral
+
 
 get_src_name :: IO String
 get_src_name = do
