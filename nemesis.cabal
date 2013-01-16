@@ -26,6 +26,7 @@ library
                       System.Nemesis
                       System.Nemesis.DSL
                       System.Nemesis.Env
+                      System.Nemesis.Kira.Mac
   other-modules:
                       System.Nemesis.Util
                       
