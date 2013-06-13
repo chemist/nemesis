@@ -36,10 +36,10 @@ Put the following code into a file named `Nemesis`
 
     nemesis = do
     
-      -- desc is optional, it gives some description to the task that follows
+      -- desc is optional, it gives some description to the task
       desc "Hunter attack macro"
 
-      -- syntax: task "keyword: dependencies" io-action
+      -- syntax: task "keyword: space seperated dependencies" io-action
       task "attack: pet-attack auto-attack" (putStrLn "attack macro done!")
 
       desc "Pet attack"
