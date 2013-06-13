@@ -98,16 +98,8 @@ Namespaces are referenced as path components.
     eating bread
     
 
-Hints
------
-
-* Add `.nemesis` to `.gitignore` or equivalents to prevent the nemesis binary from being added to your SCM
-* alias `nemesis` or `runghc Nemesis` to something sweeter, e.g. `n`
-
-Advance usage
+As an EDSL
 -------------
-
-### As an EDSL
 
     import System.Nemesis.Env
     import Air.Env ((-))
@@ -124,3 +116,9 @@ This file can be run by the Haskell interpreter:
 
     runghc Nemesis hello
 
+
+Hints
+-----
+
+* Add `.nemesis` to `.gitignore` or equivalents to prevent the generated nemesis binary from being added to your SCM
+* alias `nemesis` or `runghc Nemesis` to something sweeter, e.g. `n`
