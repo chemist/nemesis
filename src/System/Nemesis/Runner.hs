@@ -21,13 +21,15 @@ start = start_nemesis + start_nemesis_dsl + init_air + init_prelude
     init_prelude      = "import Prelude hiding ((-))\n"
 end = "\nmain = run nemesis\n"
 
-main :: IO ExitCode
+main :: IO ()
 main = do
   recompile <- should_recompile
   when recompile compile
   
   args <- getArgs
-  system - "./.nemesis " + args.join " "
+  exit_code <- system - "./.nemesis " + args.join " "
+  
+  exitWith exit_code
   
   where
     bin = ".nemesis"
