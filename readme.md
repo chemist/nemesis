@@ -32,14 +32,13 @@ Tutorial
 
 ### DSL
 
-Put the following code into a file named `Nemesis`
+Create a file named `Nemesis`
 
     nemesis = do
     
       -- desc is optional, it gives some description to the task
+      -- task syntax: task "keyword: space seperated dependencies" io-action
       desc "Hunter attack macro"
-
-      -- syntax: task "keyword: space seperated dependencies" io-action
       task "attack: pet-attack auto-attack" (putStrLn "attack macro done!")
 
       desc "Pet attack"
@@ -80,7 +79,7 @@ Create namespaces for tasks with the keyword `namespace`
       namespace "eat" - do
 
         task "bread: salad" - putStrLn "eating bread"
-        task "salad: /drink/coke" - putStrLn "nice salad"
+        task "salad: /drink/coke" - putStrLn "eating salad"
 
 
       namespace "drink" - do
@@ -94,7 +93,7 @@ Namespaces are referenced as path components.
     
     nemesis eat/bread =>
     drinking coke
-    nice salad
+    eating salad
     eating bread
     
 
