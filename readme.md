@@ -1,4 +1,4 @@
-Nemesis: a rake like task management tool for haskell
+Nemesis: a task management tool for Haskell
 =====================================================
 
 Demo
@@ -56,14 +56,14 @@ Put the following code into a file named `Nemesis`
 
 ### Run
 
-run `nemesis`
+`nemesis`
 
     attack          Hunter attack macro
     auto-attack     Auto attack
     mark            Hunter's mark
     pet-attack      Pet attack
 
-run `nemesis attack`
+`nemesis attack`
 
     casting hunter's mark
     pet attack
@@ -73,7 +73,7 @@ run `nemesis attack`
 
 ### Namespace
 
-Suppose you have the following tasks
+Create namespace for tasks with the keyword `namespace`
     
     nemesis = do
     
@@ -87,7 +87,7 @@ Suppose you have the following tasks
 
         task "coke" - putStrLn "drinking coke"
 
-then
+Namespaces are used as a path component.
 
     nemesis bread =>
     .nemesis: bread does not exist!
@@ -101,32 +101,13 @@ then
 Hints
 -----
 
-* Please add `.nemesis` to `.gitignore` or equivalents.
-* alias `nemesis` to something sweeter, e.g. `n`
+* Add `.nemesis` to `.gitignore` or equivalents to prevent the nemesis binary from being added to your SCM
+* alias `nemesis` or `runghc Nemesis` to something sweeter, e.g. `n`
 
 Advance usage
 -------------
 
-### Use LANGUAGE pragma
-
-Put a `-- Nem` line after the `Langauge` pragma
-
-    {-# LANGUAGE QuasiQuotes #-}
-
-    -- Nem
-
-    nemesis = do
-      task "i" (sh "ghci -isrc src/System/Nemesis.hs")
-
-currently the separator `-- Nem` is hard coded
-
-### Bypass preprocessing, i.e. run as EDSL
-
-Define `main`, i.e. add `main = run nemesis` in the code. The preprocessor looks for the function `main`, if it's defined, preprocessing is skipped.
-
-This turns `Nemesis` into an EDSL in Haskell, runnable by `runghc`.
-
-For example:
+### As an EDSL
 
     import System.Nemesis.Env
     import Air.Env ((-))
@@ -139,7 +120,7 @@ For example:
         sh "echo 'hello world'"
         
 
-Try:
+This file can be run by the Haskell interpreter:
 
     runghc Nemesis hello
 
