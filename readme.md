@@ -73,7 +73,7 @@ Put the following code into a file named `Nemesis`
 
 ### Namespace
 
-Create namespace for tasks with the keyword `namespace`
+Create namespaces for tasks with the keyword `namespace`
     
     nemesis = do
     
