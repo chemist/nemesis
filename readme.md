@@ -87,7 +87,7 @@ Create namespaces for tasks with the keyword `namespace`
 
         task "coke" - putStrLn "drinking coke"
 
-Namespaces are used as a path component.
+Namespaces are referenced as path components.
 
     nemesis bread =>
     .nemesis: bread does not exist!
