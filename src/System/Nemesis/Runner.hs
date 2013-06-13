@@ -10,7 +10,7 @@ import System.Time
 import System.Nemesis.DSL
 import qualified Prelude as P
 import Data.Maybe
-
+import System.Exit
 
 start, end :: String
 start = start_nemesis + start_nemesis_dsl + init_air + init_prelude
