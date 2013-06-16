@@ -12,9 +12,17 @@ Build-Depends:        base
 Cabal-version:        >= 1.2
 category:             Web
 homepage:             http://github.com/nfjinjing/nemesis
-data-files:           readme.md
-                    , changelog.md, known-issues.md, Nemesis
+source-repository:    head
+                      type: git
+                      location: https://github.com/nfjinjing/nemesis.git
 
+data-files:           readme.md
+                    , changelog.md
+                    , known-issues.md
+                    , Nemesis
+                    , test/N1.hs
+                    , test/N2.hs
+                    , test/N3.hs
 library
   ghc-options: -Wall
   build-depends:      base >= 4 && < 100
