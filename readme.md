@@ -98,7 +98,7 @@ Create namespaces for tasks with the keyword `namespace`
 
 Namespaces are referenced as path components.
 
-`runghc Nemesis bread
+`runghc Nemesis bread`
 
     Nemesis: bread does not exist!
     
