@@ -1,14 +1,13 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
 module System.Nemesis.Util (
-    module Air.Env
-  , ls
+    ls
   , rm
   , rm_rf
 ) where
 
 import System.Directory
-import Air.Env hiding (lookup, end)
+import Air.Env
 import Prelude ()
 import Data.List ((\\))
 

@@ -2,6 +2,8 @@ import System.Nemesis.Env
 import Air.Env ((-))
 import Prelude hiding ((-))
 
+import System.Nemesis.Titan
+
 main = run nemesis
 
 nemesis = do
@@ -74,3 +76,7 @@ nemesis = do
   desc "test"
   task "test" - do
     sh "runghc test/N1.hs"
+    
+  titan "Main.hs"
+  
+  task "t:Main/titan" - return ()

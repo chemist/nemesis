@@ -30,7 +30,7 @@ task s action =
     else
       task' s []
   where
-    task' name deps = insert_task def {name, deps, action}
+    task' name deps = insert_task def {name, deps, action = ShowIO action}
     strip = dropWhile (== ' ') > reverse > dropWhile (== ' ') > reverse
 
 namespace :: String -> Unit -> Unit

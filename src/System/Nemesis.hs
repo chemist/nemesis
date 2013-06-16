@@ -1,22 +1,37 @@
 {-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module System.Nemesis where
 
+import Prelude ()
+import Air.Env hiding (lookup, get)
+import Air.TH hiding (get)
 import Control.Monad.State hiding (State, join)
 import Data.List (sort)
 import Data.Map (Map, insert, empty, lookup, elems)
-import Prelude ()
 import System.Environment
 import System.Nemesis.Util
+import Text.Printf
+
+newtype ShowIO = ShowIO {unShowIO :: IO () }
+
+instance Show ShowIO where
+  show _ = "IO"
+
+instance Default ShowIO where
+  def = ShowIO (return ())
 
 data Task = Task
   {
     name :: String
-  , action :: IO ()
+  , action :: ShowIO
   , deps :: [String]
   , description :: Maybe String
   , namespace :: [String]
   }
+  deriving (Show)
+
+mkDefault ''Task
 
 data Nemesis = Nemesis
   {
@@ -27,20 +42,16 @@ data Nemesis = Nemesis
   }
   deriving (Show)
 
-instance Default Nemesis where
-  def = Nemesis empty def def def
-
-instance Default Task where
-  def = Task def (return ()) def def def
+mkDefault ''Nemesis
 
 full_name :: Task -> String
 full_name t = (t.name : t.namespace).reverse.join "/"
 
 display_name :: Task -> String
-display_name t = (t.name : t.namespace).reverse.map (ljust 10 ' ') .join " "
+display_name t = (t.name : t.namespace).reverse.map (printf "-10%s") .join " "
 
-instance Show Task where
-  show = show_with_ljust 44
+show_task :: Task -> String
+show_task = show_with_ljust 44
 
 instance Eq Task where
   a == b = a.name == b.name
@@ -73,7 +84,7 @@ run unit = do
       br
       n.tasks.elems.sort.map (show_with_ljust _task_len) .mapM_ putStrLn
       br
-    br = putStrLn ""
+    br = puts ""
 
 insert_task :: Task -> Unit
 insert_task t = do
@@ -96,13 +107,9 @@ run_nemesis n = run' (n.target)
     run' :: String -> IO ()
     run' s = case (n.tasks.lookup s) of
       Nothing -> bye
-      Just x -> revenge x
+      Just x -> run_task x
       where
-        bye = error - s +  " does not exist!"
+        bye = error - printf "%s does not exist!" s
 
-    revenge :: Task -> IO ()
-    revenge t = t.deps.mapM_ run' >> revenge_and_say
-      where
-        revenge_and_say = do
-          -- putStrLn - "running: " + t.name
-          t.action
+    run_task :: Task -> IO ()
+    run_task t = t.deps.mapM_ run' >> t.action.unShowIO
