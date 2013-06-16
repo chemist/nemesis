@@ -48,7 +48,7 @@ full_name :: Task -> String
 full_name t = (t.name : t.namespace).reverse.join "/"
 
 display_name :: Task -> String
-display_name t = (t.name : t.namespace).reverse.map (printf "-10%s") .join " "
+display_name t = (t.name : t.namespace).reverse.map (printf "%-10s") .join " "
 
 show_task :: Task -> String
 show_task = show_with_ljust 44
