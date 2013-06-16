@@ -12,6 +12,7 @@ import System.Directory
 import System.FilePath.Glob
 import System.Nemesis
 import System.Nemesis.Util
+import Text.Printf
 
 desc :: String -> Unit
 desc s = do
