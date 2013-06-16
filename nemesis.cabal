@@ -1,5 +1,5 @@
 Name:                 nemesis
-Version:              2013.6.16
+Version:              2013.6.16.1
 Build-type:           Simple
 Synopsis:             a task management tool for Haskell
 Description:          Organize common shell tasks into a meaningful tree like structure with dependency tracking
