@@ -54,7 +54,10 @@ sh s = do
   status <- system s
   case status of 
     ExitSuccess -> return ()
-    ExitFailure code -> error - s + " failed with status code: " + show code
+    ExitFailure code -> do
+      puts - printf "%s failed with status code: %s" s (show code)
+      exitWith status
+      
 
 clean :: [String] -> Unit
 clean xs = do
