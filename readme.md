@@ -4,22 +4,24 @@ Nemesis: a task management tool for Haskell
 Demo
 ----
   
-    nemesis = do
+    import System.Nemesis.Env
+
+    main = run $ do
 
       clean
         [ "**/*.hi"
         , "**/*.o"
         , "manifest"
         ]
-        
-      task "dist" - do
+
+      task "dist" $ do
         sh "cabal clean"
         sh "cabal configure"
         sh "cabal sdist"
 
       task "i" (sh "ghci -isrc src/System/Nemesis.hs")
 
-      task "manifest" - do
+      task "manifest" $ do
         sh "find . | grep 'hs$' > manifest"
 
 Tutorial
@@ -34,7 +36,11 @@ Tutorial
 
 Create a file named `Nemesis`
 
-    nemesis = do
+    import System.Nemesis.Env
+    import Air.Env ((-))
+    import Prelude hiding ((-))
+    
+    main = run - do
     
       -- desc is optional, it gives some description to the task
       -- task syntax: task "keyword: space seperated dependencies" io-action
@@ -55,14 +61,14 @@ Create a file named `Nemesis`
 
 ### Run
 
-`nemesis`
+`runghc Nemesis`
 
     attack          Hunter attack macro
     auto-attack     Auto attack
     mark            Hunter's mark
     pet-attack      Pet attack
 
-`nemesis attack`
+`runghc Nemesis attack`
 
     casting hunter's mark
     pet attack
@@ -74,7 +80,11 @@ Create a file named `Nemesis`
 
 Create namespaces for tasks with the keyword `namespace`
     
-    nemesis = do
+    import System.Nemesis.Env
+    import Air.Env ((-))
+    import Prelude hiding ((-))
+
+    main = run - do
     
       namespace "eat" - do
 
@@ -88,36 +98,19 @@ Create namespaces for tasks with the keyword `namespace`
 
 Namespaces are referenced as path components.
 
-    nemesis bread =>
-    .nemesis: bread does not exist!
+`runghc Nemesis bread
+
+    Nemesis: bread does not exist!
     
-    nemesis eat/bread =>
+`runghc Nemesis eat/bread`
+
     drinking coke
     eating salad
     eating bread
     
 
-As an EDSL
--------------
-
-    import System.Nemesis.Env
-    import Air.Env ((-))
-    import Prelude hiding ((-))
-
-    main = run nemesis
-    
-    nemesis = do
-      task "hello" - do
-        sh "echo 'hello world'"
-        
-
-This file can be run by the Haskell interpreter:
-
-    runghc Nemesis hello
-
 
 Hints
 -----
 
-* Add `.nemesis` to `.gitignore` or equivalents to prevent the generated nemesis binary from being added to your SCM
-* alias `nemesis` or `runghc Nemesis` to something sweeter, e.g. `n`
+* alias `runghc Nemesis` to something sweeter, e.g. `n`

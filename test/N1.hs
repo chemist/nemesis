@@ -1,10 +1,19 @@
-import System.Nemesis (run)
-import System.Nemesis.DSL
-import Air.Env ((-))
-import Prelude hiding ((-))
+import System.Nemesis.Env
 
-nemesis = do
-  task "hello" - do
-    sh "echo 'hello world'"
+main = run $ do
+
+  clean
+    [ "**/*.hi"
+    , "**/*.o"
+    , "manifest"
+    ]
     
-main = run nemesis
+  task "dist" $ do
+    sh "cabal clean"
+    sh "cabal configure"
+    sh "cabal sdist"
+
+  task "i" (sh "ghci -isrc src/System/Nemesis.hs")
+
+  task "manifest" $ do
+    sh "find . | grep 'hs$' > manifest"

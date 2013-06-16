@@ -1,3 +1,10 @@
+2013.6.16
+---------
+
+* add Glob dependency
+* remove binary version as it's not 'simple'
+
+
 2009.10.7
 ---------
 
