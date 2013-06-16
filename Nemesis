@@ -12,6 +12,7 @@ nemesis = do
     , "manifest"
     , "main"
     , "nemesis-tmp.*"
+    , "dist"
     ]
   
 
