@@ -64,7 +64,7 @@ clean :: [String] -> Unit
 clean xs = do
   desc "Remove any temporary products."
   task "clean" - do
-    paths <- globDir (xs.map compile) "." ^ fst ^ join' ^ nub ^ sort ^ reverse
+    paths <- globDir (xs.map compile) "." ^ fst ^ concat ^ nub ^ sort ^ reverse
     mapM_ rm_any paths
     where
       rm_any s = do
