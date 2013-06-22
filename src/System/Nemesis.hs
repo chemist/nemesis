@@ -12,6 +12,7 @@ import Data.Map (Map, insert, empty, lookup, elems)
 import System.Environment
 import System.Nemesis.Util
 import Text.Printf
+import System.Exit (exitWith, ExitCode(..))
 
 newtype ShowIO = ShowIO {unShowIO :: IO () }
 
@@ -70,9 +71,9 @@ show_with_ljust n task=
 run :: Unit -> IO ()
 run unit = do
   args <- getArgs
-  if args.null
-    then help
-    else execStateT unit def {target = args.first} >>= run_nemesis
+  case args of
+    [] -> help
+    _target:_ -> execStateT unit def {target = _target} >>= run_nemesis
   
   where
     help = execStateT unit def >>= list_task
@@ -109,7 +110,9 @@ run_nemesis n = run' (n.target)
       Nothing -> bye
       Just x -> run_task x
       where
-        bye = error - printf "%s does not exist!" s
+        bye = do
+          printf "%s does not exist!" s
+          
 
     run_task :: Task -> IO ()
     run_task t = t.deps.mapM_ run' >> t.action.unShowIO
