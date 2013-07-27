@@ -4,15 +4,13 @@
 module System.Nemesis where
 
 import Prelude ()
-import Air.Env hiding (lookup, get)
+import Air.Env hiding (lookup)
 import Air.TH hiding (get)
 import Control.Monad.State hiding (State, join)
 import Data.List (sort)
-import Data.Map (Map, insert, empty, lookup, elems)
+import Data.Map (Map, insert, lookup, elems)
 import System.Environment
-import System.Nemesis.Util
 import Text.Printf
-import System.Exit (exitWith, ExitCode(..))
 
 newtype ShowIO = ShowIO {unShowIO :: IO () }
 
